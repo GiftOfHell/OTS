@@ -1,5 +1,6 @@
 import {
   BaseEntity,
+  Column,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -12,6 +13,7 @@ interface UserHasQuizzesData {
   userHasQuizzesId: string;
   userId: string;
   quizId: string;
+  result: string;
 }
 
 @Entity({ name: 'user_has_quizzes' })
@@ -21,11 +23,15 @@ export class UserHasQuizzesEntity extends BaseEntity {
 
     if (userHasQuizzesData) {
       this.user_has_quizzes_id = userHasQuizzesData.userHasQuizzesId;
+      this.result = userHasQuizzesData.result;
     }
   }
 
   @PrimaryGeneratedColumn('uuid')
   user_has_quizzes_id: string;
+
+  @Column()
+  result: string;
 
   @ManyToOne(() => UserEntity, (user) => user.user_id)
   @JoinColumn({

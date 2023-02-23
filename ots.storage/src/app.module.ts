@@ -10,6 +10,14 @@ import { UserHasQuizzesEntity } from './user/entity/userHasQuizzes.entity';
 import { UserHasRolesEntity } from './user/entity/userHasRoles.entity';
 import { UserEntity } from './user/entity/user.entity';
 import { AuthModule } from './auth/auth.module';
+import { ApplicantEntity } from './user/entity/applicant.entity';
+import { UserAnswerEntity } from './user/entity/userAnswers.entity';
+import { ThemeEntity } from './quiz/entity/theme.entity';
+import { QuizHasQuestionsEntity } from './quiz/entity/quizHasQuestions.entity';
+import { QuizEntity } from './quiz/entity/quiz.entity';
+import { TypeEntity } from './question/type.entity';
+import { AnswerEntity } from './question/answer.entity';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -23,10 +31,16 @@ import { AuthModule } from './auth/auth.module';
       RoleEntity,
       UserHasQuizzesEntity,
       UserHasRolesEntity,
-      UserEntity,
+      ApplicantEntity,
+      UserAnswerEntity,
+      QuizHasQuestionsEntity,
+      QuizEntity,
+      TypeEntity,
+      AnswerEntity,
     ]),
     QuizModule,
     AuthModule,
+    UserModule,
   ],
 })
 export class AppModule {}

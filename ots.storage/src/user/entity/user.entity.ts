@@ -1,7 +1,6 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-interface UserData {
-  userId: string;
+export interface UserData {
   username: string;
   password: string;
 }
@@ -12,7 +11,6 @@ export class UserEntity extends BaseEntity {
     super();
 
     if (userData) {
-      this.user_id = userData.userId;
       this.username = userData.username;
       this.password = userData.password;
     }
@@ -21,7 +19,9 @@ export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   user_id: string;
 
-  @Column()
+  @Column({
+    unique: true,
+  })
   username: string;
 
   @Column()
