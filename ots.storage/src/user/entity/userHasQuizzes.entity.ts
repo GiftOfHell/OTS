@@ -33,14 +33,14 @@ export class UserHasQuizzesEntity extends BaseEntity {
   @Column()
   result: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.user_id)
+  @ManyToOne(() => UserEntity, (user) => user.user_id, { onDelete: 'CASCADE' })
   @JoinColumn({
     referencedColumnName: 'user_id',
     name: 'user_id',
   })
   user: UserEntity;
 
-  @ManyToOne(() => QuizEntity, (quiz) => quiz.quiz_id)
+  @ManyToOne(() => QuizEntity, (quiz) => quiz.quiz_id, { onDelete: 'CASCADE' })
   @JoinColumn({
     referencedColumnName: 'quiz_id',
     name: 'quiz_id',

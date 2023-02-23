@@ -37,6 +37,7 @@ import { UserModule } from './user/user.module';
       QuizEntity,
       TypeEntity,
       AnswerEntity,
+      ThemeEntity,
     ]),
     QuizModule,
     AuthModule,

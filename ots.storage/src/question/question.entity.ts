@@ -38,12 +38,12 @@ export class QuestionEntity extends BaseEntity {
   @Column()
   value: number;
 
-  // @ManyToOne(() => ThemeEntity, (theme) => theme.theme_id)
-  // @JoinColumn({
-  //   referencedColumnName: 'theme_id',
-  //   name: 'theme_id',
-  // })
-  // theme: ThemeEntity;
+  @ManyToOne(() => ThemeEntity, (theme) => theme.theme_id)
+  @JoinColumn({
+    referencedColumnName: 'theme_id',
+    name: 'theme_id',
+  })
+  theme: ThemeEntity;
 
   @ManyToOne(() => TypeEntity, (type) => type.type_id)
   @JoinColumn({

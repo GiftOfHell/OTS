@@ -19,14 +19,16 @@ export class QuizHasQuestionsEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   quiz_has_questions_id: string;
 
-  @ManyToOne(() => QuizEntity, (quiz) => quiz.quiz_id)
+  @ManyToOne(() => QuizEntity, (quiz) => quiz.quiz_id, { onDelete: 'CASCADE' })
   @JoinColumn({
     referencedColumnName: 'quiz_id',
     name: 'quiz_id',
   })
   quiz: QuizEntity;
 
-  @ManyToOne(() => QuestionEntity, (question) => question.question_id)
+  @ManyToOne(() => QuestionEntity, (question) => question.question_id, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({
     referencedColumnName: 'question_id',
     name: 'question_id',

@@ -27,14 +27,14 @@ export class UserHasRolesEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   user_has_roles_id: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.user_id)
+  @ManyToOne(() => UserEntity, (user) => user.user_id, { onDelete: 'CASCADE' })
   @JoinColumn({
     referencedColumnName: 'user_id',
     name: 'user_id',
   })
   user: UserEntity;
 
-  @ManyToOne(() => RoleEntity, (role) => role.role_id)
+  @ManyToOne(() => RoleEntity, (role) => role.role_id, { onDelete: 'CASCADE' })
   @JoinColumn({
     referencedColumnName: 'role_id',
     name: 'role_id',

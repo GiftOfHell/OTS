@@ -1,4 +1,12 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryColumn,
+} from 'typeorm';
+import { UserEntity } from './user.entity';
 
 interface ApplicantData {
   userId: string;
@@ -30,7 +38,11 @@ export class ApplicantEntity extends BaseEntity {
     }
   }
 
-  @PrimaryGeneratedColumn('uuid')
+  @OneToOne(() => UserEntity, (user: UserEntity) => user.user_id, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'user_id' })
+  @PrimaryColumn()
   user_id: string;
 
   @Column()

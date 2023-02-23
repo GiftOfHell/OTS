@@ -5,7 +5,7 @@ interface TypeData {
   type: string;
 }
 
-@Entity({ name: 'theme' })
+@Entity({ name: 'type' })
 export class TypeEntity extends BaseEntity {
   constructor(typeData: TypeData) {
     super();
