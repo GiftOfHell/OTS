@@ -1,5 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { QuizEntity } from '../quiz/entity/quiz.entity';
+import * as path from 'path';
 
 export default class TypeormConfig {
   static getOrmConfig(configService: ConfigService): TypeOrmModuleOptions {
@@ -12,7 +14,7 @@ export default class TypeormConfig {
       type: 'postgres',
       ssl: false,
       synchronize: configService.get('db.sync'),
-      entities: [__dirname + '/../**/*.entity.{js,ts}'],
+      autoLoadEntities: true,
     };
   }
 }

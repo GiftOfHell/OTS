@@ -1,8 +1,7 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 interface QuizData {
-  testId: string;
-  name: string;
+  quizId: string;
   difficulty: number;
 }
 
@@ -11,16 +10,14 @@ export class QuizEntity extends BaseEntity {
   constructor(quizData: QuizData) {
     super();
 
-    this.test_id = quizData.testId;
-    this.name = quizData.name;
-    this.difficulty = quizData.difficulty;
+    if (quizData) {
+      this.quiz_id = quizData.quizId;
+      this.difficulty = quizData.difficulty;
+    }
   }
 
   @PrimaryGeneratedColumn('uuid')
-  test_id: string;
-
-  @Column()
-  name: string;
+  quiz_id: string;
 
   @Column()
   difficulty: number;

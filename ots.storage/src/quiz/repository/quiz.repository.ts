@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
-import { QuizEntity } from './quiz.entity';
+import { QuizEntity } from '../entity/quiz.entity';
 
 @Injectable()
 export class QuizRepository extends Repository<QuizEntity> {
@@ -9,6 +9,6 @@ export class QuizRepository extends Repository<QuizEntity> {
   }
 
   async getAll() {
-    return ['hello world'];
+    return this.find();
   }
 }
