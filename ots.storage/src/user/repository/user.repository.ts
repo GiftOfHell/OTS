@@ -15,10 +15,10 @@ export class UserRepository extends Repository<UserEntity> {
     return user;
   }
 
-  async findUserByLogin(login: string) {
+  async findUserByUsername(username: string) {
     return this.findOne({
       where: {
-        username: login,
+        username,
       },
     });
   }

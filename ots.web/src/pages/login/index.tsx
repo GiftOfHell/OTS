@@ -1,15 +1,23 @@
 import {Button, Center, Container, Input, InputGroup, InputRightElement, Text} from '@chakra-ui/react';
 import {ViewIcon, ViewOffIcon} from '@chakra-ui/icons';
-import axios from "axios";
 import {useState} from "react";
+import api from "@/api/api";
 
 function Login() {
+    const [username, setUsername] = useState(null as string | null);
+    const [password, setPassword] = useState(null as string | null);
+
+
     const [showPassword, setShowPassword] = useState(false);
     const ShowPassword = () => setShowPassword(!showPassword);
 
-    const makeRequest = async () => {
-        const {data} = await axios.get("http://localhost:8080/quiz", {withCredentials: true})
-        console.log(data);
+    const login = async () => {
+        if (!username || !password) {
+            return;
+        }
+
+        await api.login(username, password);
+        // redirect('/manageQuizzes');
     }
 
     return (<Center>
@@ -17,12 +25,14 @@ function Login() {
                 <Center>
                     <Text fontSize='40px' as='b'>Log In</Text>
                 </Center>
-                <Input placeholder='Enter login' margin='1rem 0'/>
+                <Input onInput={(event) => setUsername((event.target as HTMLInputElement).value)}
+                       placeholder='Enter login' margin='1rem 0'/>
                 <InputGroup margin='0 0 1rem'>
                     <Input
                         pr='4.5rem'
                         type={showPassword ? 'text' : 'password'}
                         placeholder='Enter password'
+                        onInput={(event) => setPassword((event.target as HTMLInputElement).value)}
                     />
                     <InputRightElement width='4.5rem'>
                         <Button h='1.75rem' size='sm' onClick={ShowPassword}>
@@ -31,7 +41,7 @@ function Login() {
                     </InputRightElement>
                 </InputGroup>
                 <Center margin='1rem 0'>
-                    <Button onClick={makeRequest} colorScheme='teal'>
+                    <Button onClick={login} colorScheme='teal'>
                         Sign In
                     </Button>
                 </Center>

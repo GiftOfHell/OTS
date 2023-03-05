@@ -6,6 +6,7 @@ import { LocalAuthGuard } from '../auth/guards/local.auth.guard';
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
   @Post('/signup')
   async addUser(@Body() createUserDto: CreateUserDto) {
     await this.userService.createUser(
@@ -16,13 +17,13 @@ export class UserController {
 
   @Post('/login')
   @UseGuards(LocalAuthGuard)
-  login(@Req() req): any {
-    return { User: req.user, msg: 'User logged in' };
+  login(@Req() req) {
+    return { ...req.user };
   }
 
   @Get('/logout')
-  logout(@Req() req): any {
+  logout(@Req() req) {
     req.session.destroy();
-    return { msg: 'The user session has ended' };
+    return { message: 'The user session has ended' };
   }
 }
